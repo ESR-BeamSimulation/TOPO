@@ -1,0 +1,33 @@
+Method          MP
+SCFieldMethod   PIC
+Pusher          LeapFrog            ! ||RK4(not available now)
+
+
+particle	1.0  1.0                ! numOfCharge,numofMass
+twissx		0.02e-2  7.71e-2  2.41        ! twiss parameter emittance (m*mrad) beta (m/rad) alpha  
+twissy		0.02e-2  7.71e-2  2.41 
+twissz		0.016e-2 0.99e-2  0           ! twiss parameter emittance (m*mrad) beta (m/rad) alpha  
+particlenumber  10000
+distribution    KV    KV            ! ||WB||PB||GS
+
+
+displacePos     0 0 0               ! displace of initial beam refree to beam center
+displaceDpos    0 0 0               ! Ddisplace of initial beam 
+frequency       325e+6                 ! MHz
+
+KneticEnergy	0.035  0.005	         ! MeV,  energy spread is +-
+beamLength       1     0.95             ! the iniital longitudinal length of beam in unit of beta*lambda, if the second parameter is one, it is used for  
+!mesh
+Dimension   3                       ! ||2
+NumofGrid 	65 65 65 	            ! || xx yy
+!mesh_length    xx yy zz            ! || xx yy    The transverse mesh size if usually set equal to pipe radis. The longitudinal mesh size is at least to one beta*lambda 
+Current     0.015                     ! A
+
+!control
+StepPerCycle	50                 ! which is decided by the frequence.  It require StepPerCycle steps to finish one RF period, 
+RunPeriod       200
+traj            10
+
+!print
+printStep        50
+

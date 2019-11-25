@@ -1,0 +1,74 @@
+
+set term  eps
+set output "ez.eps"
+
+set xrange [-1:1]
+set yrange [-50:50]
+xlab1='\delta Z [cm]' 
+ylab1='pz [mrad]'
+Nprint=180
+do for [i=0:Nprint]{
+#  set autoscale
+  path1=sprintf("fort%i.dat",i)
+  plot path1 u 7:8 ps 0.05 title sprintf("period=%i",i),0
+}
+set output
+
+
+set term  eps
+set output "ex.eps"
+
+set xrange [-0.5:0.5]
+set yrange [-200:200]
+xlab1='X [cm]' 
+ylab1='PX [mrad]'
+
+do for [i=0:Nprint]{
+  path1=sprintf("fort%i.dat",i)
+  plot path1 u 2:3 ps 0.2 title sprintf("period=%i",i),0
+}
+set output
+
+set term  eps
+set output "ey.eps"
+
+set xrange [-0.5:0.5]
+set yrange [-200:200]
+xlab1='Y [cm]' 
+ylab1='PY [mrad]'
+
+do for [i=0:Nprint]{
+  path1=sprintf("fort%i.dat",i)
+  plot path1 u 4:5 ps 0.2 title sprintf("period=%i",i),0
+}
+set output
+
+
+
+
+set term  eps
+set output "exy.eps"
+
+set xrange [-0.5:0.5]
+set yrange [-0.5:0.5]
+xlab1='X [cm]' 
+ylab1='Y [mrad]'
+
+do for [i=0:Nprint]{
+  path1=sprintf("fort%i.dat",i)
+  plot path1 u 2:4 ps 0.2 title sprintf("period=%i",i),0
+}
+set output
+
+
+set term X11
+path2 = "output.dat"
+set xrange [0:500]
+set yrange [0:2]
+set autoscale
+xlab1='\delta Z [cm]' 
+ylab1='rms size [cm]'
+#plot  path2 u 1:3 ps 0.4 title "x rms size",      path2 u 1:4 ps 0.4 title "y rms size",       path2 u 1:5 ps 0.4 title "z rms size" 
+#set term x11
+plot  path2 u 1:9 ps 0.6 title "x rms emittance", path2 u 1:10 ps 0.6 title "y rms emittance", path2 u 1:11 ps 0.6 title "z rms emittance" 
+plot  path2 u 1:6 ps 0.4 title "x rms size",      path2 u 1:7 ps 0.4 title "y rms size",       path2 u 1:8 ps 0.4 title "z rms size" 
